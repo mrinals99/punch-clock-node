@@ -1,0 +1,30 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-8">
+  <title>ShiftExpert Kiosk</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+<body>
+<div id="login">
+  <h1>Hello &nbsp;<i class="fa fa-lg fa-user"></i></h1>
+  <div id="form">
+
+    <input type="tel" id="pincode" placeholder="Please Enter PIN Number" autocomplete="off" />
+    <i class="fa fa-4x fa-spinner fa-spin" ></i>
+    <h1 class="hidden error" id="notFound"><i class="fa fa-lg fa-exclamation-triangle"></i> &nbsp; PIN Code not found</h1>
+    <h1 class="hidden confirmation"><i class="fa fa-lg fa-thumbs-o-up "></i> &nbsp; Done</h1>
+    <button  id="clockIn" class="hidden" ><i class="fa fa-lg fa-sign-in"></i>&nbsp; Clock in</button>
+    <button  id="clockOut" class="hidden"><i class="fa fa-lg fa-sign-out"></i>&nbsp; Clock out</button>
+  </div>
+</div>
+
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="js/index.js"></script>
+
+</body>
+
+</html>

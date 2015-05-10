@@ -1,0 +1,35 @@
+{
+  "name": "clock-kiosk",
+  "version": "0.0.1",
+  "description": "Clock In or Clock Out",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "config": {
+    "admin": "root",
+    "pass": "root",
+    "sfuser": "reem@v3.3.com",
+    "sfpass": "1234.comrFZ3bWIIaXPiKR6LYHtwo08g",
+    "client_id": "3MVG9rFJvQRVOvk5nd6A4swCyck.4BFLnjFuASqNZmmxzpQSFWSTe6lWQxtF3L5soyVLfjV3yBKkjcePAsPzi",
+    "client_secret": "9154137956044345875",
+    "redirect_uri": "http://localhost:3000/oauth/_callback",
+    "field_api_name": "PIN_Code__c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/clock-kiosk.git"
+  },
+  "keywords": [
+    "kiosk",
+    "sfdc"
+  ],
+  "author": "Moti Korets",
+  "license": "ISC",
+  "dependencies": {
+    "basic-auth": "^1.0.1",
+    "express": "^4.12.3",
+    "nforce": "^1.1.1",
+    "node-static": "^0.7.6"
+  }
+}
