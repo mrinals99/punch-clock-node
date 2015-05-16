@@ -4,32 +4,27 @@ var express = require('express');
 var app = express();
 var auth = require('basic-auth')
 
+var sfuser    = process.env.SFUSER || process.env.npm_package_config_sfuser;
+var sfpass    = process.env.SFPASS || process.env.npm_package_config_sfpass;
+var adminuser = process.env.ADMIN || process.env.npm_package_config_admin;
+var amdinpass = process.env.PASS || process.env.npm_package_config_pass;
+
+var fieldName = process.env.FIELD_API_NAME || process.env.npm_package_config_field_api_name;
 
 
-var sfuser    = process.env.SFUSER || process.env.NPM_PACKAGE_CONFIG_SFUSER;
-var sfpass    = process.env.SFPASS || process.env.NPM_PACKAGE_CONFIG_SFPASS;
-var adminuser = process.env.ADMIN || process.env.NPM_PACKAGE_CONFIG_ADMIN;
-var amdinpass = process.env.PASS || process.env.NPM_PACKAGE_CONFIG_PASS;
-
-var fieldName = process.env.FIELD_API_NAME || process.env.NPM_PACKAGE_CONFIG_FIELD_API_NAME;
-
-
-var clientId = process.env.CLIENT_ID || process.env.NPM_PACKAGE_CONFIG_CLIENT_ID;
-var clientSecret = process.env.CLIENT_SECRET || process.env.NPM_PACKAGE_CONFIG_CLIENT_SECRET;
-var redirectUri = process.env.REDIRECT_URI || process.env.NPM_PACKAGE_CONFIG_REDIRECT_URI;
-
+var clientId = process.env.CLIENT_ID || process.env.npm_package_config_client_id;
+var clientSecret = process.env.CLIENT_SECRET || process.env.npm_package_config_client_secret;
+var redirectUri = process.env.REDIRECT_URI || process.env.npm_package_config_redirect_uri;
 app.use(isAuthenticated)
 
 app.use(express.static('public'));
-
-
 
 app.get('/availableActions', function (req, res) {
     org.apexRest( {uri: 'punchclock', method: 'get',
         urlParams: {findByField: fieldName, fieldValue: req.query.pin}})
             .then( function( availableActions ){
                 console.log('AvailableActions : ' + availableActions );
-                res.end( availableActions );
+                res.end( availableActions.join(',') );
             }).error(function(err){
                 console.log('No Resource Found Or server error');
                 res.end('NO');

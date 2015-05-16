@@ -11,35 +11,43 @@ $(function(){
             $('.fa-spinner').css('visibility','visible');
             $.ajax('/availableActions?pin=' + $('#pincode').val())
                 .done(function(result){
-                    if(result == 'Clock In'){
-                        hideAll();
-                        $('#clockIn').show(500);
-                    } else if(result == 'Clock Out'){
-                        hideAll();
-                        $('#clockOut').show(500);
-                    } else if(result == 'NO'){
-                        hideAll();
+                    var arrResult = result.split(',');
+                    hideAll();
+                    if(result == 'NO'){
                         $('#notFound').show(500);
+                    }else{
+                        if(arrResult.length == 2){
+                            arrResult.map(actionToId).forEach(function(id){
+                            $('#' + id).addClass('twoInRow')
+                            });
+                        }
+                        arrResult.map(actionToId).forEach(function(id){
+                            $('#' + id).show(500);
+                        });
                     }
                 })
                 .always(function(){
-                    $('.fa-spinner').css('visibility','hidden');
                     $('body').css('cursor','auto');
                 });
         }else{
             hideAll();
         }
+    })
+
+    $('.clockAction').click(function(){
+        clockAction(idToAction(this.id));
     });
 
-    $('#clockIn').click(function(){
-        clockAction('Clock In');
-    });
 
-    $('#clockOut').click(function(){
-        clockAction('Clock Out');
-    });
+})
 
-});
+function idToAction(fullActionName){
+    return fullActionName.replace(/_/g,' ');
+}
+
+function actionToId(fullActionName){
+    return fullActionName.replace(/ /g,'_');
+}
 
 function clockAction(action){
     hideAll(function(){
@@ -55,13 +63,9 @@ function clockAction(action){
         });
 }
 
-function showOnly(id){
-    hideAll();
-    $('#' + id).show(500);
-}
-
 function hideAll(cb){
-    $('#clockOut,#clockIn,.error,.confirmation').hide(400,cb);
+    $('.twoInRow').removeClass('twoInRow');
+    $('.clockAction,.error,.confirmation').hide(400,cb);
     $('.fa-spinner').css('visibility','hidden');
 }
 

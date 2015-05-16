@@ -4,6 +4,7 @@
   "description": "Clock In or Clock Out",
   "main": "index.js",
   "scripts": {
+    "nodemon": "nodemon app.js",
     "start": "node app.js"
   },
   "config": {
