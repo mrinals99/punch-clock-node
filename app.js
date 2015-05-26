@@ -54,6 +54,7 @@ var org = nforce.createConnection({
   clientId: clientId,
   clientSecret: clientSecret,
   redirectUri: redirectUri,
+  environment: 'sandbox',
   mode:'single'
 });
 
